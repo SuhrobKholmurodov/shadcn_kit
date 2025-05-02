@@ -1,26 +1,24 @@
-"use client"
+'use client';
 
-import * as React from "react"
-import { Link, useLocation } from "react-router-dom"
+import * as React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import {
-  BarChart3,
   Calendar,
   ChevronsUpDown,
-  LayoutDashboard,
-  MessageSquare,
   Settings,
-  Users2,
   FolderKanban,
   CheckSquare,
   PlusCircle,
   Search,
   User,
   LogOut,
-} from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+  ChevronDown,
+  Check,
+} from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,7 +26,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from '@/components/ui/dropdown-menu';
 import {
   Sidebar,
   SidebarContent,
@@ -44,131 +42,109 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from '@/components/ui/sidebar';
 
-// Data object for the sidebar
 const data = {
   user: {
-    name: "John Doe",
-    email: "john@example.com",
-    avatar: "/placeholder.svg?height=40&width=40",
+    name: 'John Doe',
+    email: 'john@example.com',
+    avatar: '/placeholder.svg?height=40&width=40',
   },
   teams: [
-    { id: "1", name: "Acme Inc", role: "Admin" },
-    { id: "2", name: "Globex Corp", role: "Member" },
-    { id: "3", name: "Stark Industries", role: "Owner" },
+    { id: '1', name: 'Acme Inc', role: 'Admin' },
+    { id: '2', name: 'Globex Corp', role: 'Member' },
+    { id: '3', name: 'Stark Industries', role: 'Owner' },
   ],
   navMain: [
     {
-      title: "Dashboard",
-      icon: LayoutDashboard,
-      url: "/",
-    },
-    {
-      title: "Analytics",
-      icon: BarChart3,
-      url: "/analytics",
-    },
-    {
-      title: "Projects",
+      title: 'Projects',
       icon: FolderKanban,
-      url: "/projects",
+      url: '/projects',
       items: [
         {
-          title: "Web App Redesign",
-          url: "/projects?id=web-app",
+          title: 'Web App Redesign',
+          url: '/projects?id=web-app',
         },
         {
-          title: "Mobile App Development",
-          url: "/projects?id=mobile-app",
+          title: 'Mobile App Development',
+          url: '/projects?id=mobile-app',
         },
         {
-          title: "Marketing Campaign",
-          url: "/projects?id=marketing",
+          title: 'Marketing Campaign',
+          url: '/projects?id=marketing',
         },
       ],
     },
     {
-      title: "Team",
-      icon: Users2,
-      url: "/team",
-    },
-    {
-      title: "Messages",
-      icon: MessageSquare,
-      url: "/messages",
-      badge: "5",
-    },
-    {
-      title: "Tasks",
+      title: 'Tasks',
       icon: CheckSquare,
-      url: "/tasks",
+      url: '/tasks',
       items: [
         {
-          title: "To Do",
-          url: "/tasks?filter=todo",
-          badge: "12",
+          title: 'To Do',
+          url: '/tasks?filter=todo',
+          badge: '12',
         },
         {
-          title: "In Progress",
-          url: "/tasks?filter=in-progress",
-          badge: "3",
+          title: 'In Progress',
+          url: '/tasks?filter=in-progress',
+          badge: '3',
         },
         {
-          title: "Completed",
-          url: "/tasks?filter=completed",
+          title: 'Completed',
+          url: '/tasks?filter=completed',
         },
       ],
     },
     {
-      title: "Calendar",
+      title: 'Calendar',
       icon: Calendar,
-      url: "/calendar",
+      url: '/calendar',
     },
     {
-      title: "Settings",
+      title: 'Settings',
       icon: Settings,
-      url: "/settings",
+      url: '/settings',
     },
   ],
   projects: [
     {
-      title: "Web App Redesign",
-      description: "Redesign the company website",
+      title: 'Web App Redesign',
+      description: 'Redesign the company website',
       progress: 75,
-      url: "/projects?id=web-app",
+      url: '/projects?id=web-app',
     },
     {
-      title: "Mobile App Development",
-      description: "Build a new mobile app",
+      title: 'Mobile App Development',
+      description: 'Build a new mobile app',
       progress: 40,
-      url: "/projects?id=mobile-app",
+      url: '/projects?id=mobile-app',
     },
     {
-      title: "Marketing Campaign",
-      description: "Q3 marketing campaign",
+      title: 'Marketing Campaign',
+      description: 'Q3 marketing campaign',
       progress: 90,
-      url: "/projects?id=marketing",
+      url: '/projects?id=marketing',
     },
     {
-      title: "Product Launch",
-      description: "Launch new product line",
+      title: 'Product Launch',
+      description: 'Launch new product line',
       progress: 20,
-      url: "/projects?id=product-launch",
+      url: '/projects?id=product-launch',
     },
     {
-      title: "Customer Research",
-      description: "User interviews and surveys",
+      title: 'Customer Research',
+      description: 'User interviews and surveys',
       progress: 60,
-      url: "/projects?id=customer-research",
+      url: '/projects?id=customer-research',
     },
   ],
-}
+};
 
 export default function AppSidebar() {
-  const location = useLocation()
+  const location = useLocation();
   // const { state } = useSidebar()
-  const [selectedTeam, setSelectedTeam] = React.useState(data.teams[0])
+  const [selectedTeam, setSelectedTeam] = React.useState(data.teams[0]);
 
   return (
     <Sidebar>
@@ -182,7 +158,10 @@ export default function AppSidebar() {
                   className="transition-all duration-200 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                 >
                   <Avatar className="h-8 w-8 border border-sidebar-border">
-                    <AvatarImage src={data.user.avatar || "/placeholder.svg"} alt={data.user.name} />
+                    <AvatarImage
+                      src={data.user.avatar || '/placeholder.svg'}
+                      alt={data.user.name}
+                    />
                     <AvatarFallback>{data.user.name.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col gap-0.5 leading-none">
@@ -192,7 +171,10 @@ export default function AppSidebar() {
                   <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-[--radix-dropdown-menu-trigger-width]">
+              <DropdownMenuContent
+                align="start"
+                className="w-[--radix-dropdown-menu-trigger-width]"
+              >
                 <DropdownMenuLabel>Teams</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 {data.teams.map((team) => (
@@ -204,18 +186,7 @@ export default function AppSidebar() {
                     <span>{team.name}</span>
                     {team.id === selectedTeam.id && (
                       <span className="ml-auto flex h-4 w-4 items-center justify-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="h-4 w-4"
-                        >
-                          <path d="M20 6L9 17l-5-5" />
-                        </svg>
+                        <Check />
                       </span>
                     )}
                   </DropdownMenuItem>
@@ -227,19 +198,25 @@ export default function AppSidebar() {
         <div className="px-2 py-2">
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input type="search" placeholder="Search..." className="w-full bg-background pl-8 text-sm" />
+            <Input
+              type="search"
+              placeholder="Search..."
+              className="w-full bg-background pl-8 text-sm"
+            />
           </div>
         </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {data.navMain.map((item) => {
                 const isActive =
                   location.pathname === item.url ||
-                  (item.items && item.items.some((subItem) => location.pathname + location.search === subItem.url))
+                  (item.items &&
+                    item.items.some(
+                      (subItem) => location.pathname + location.search === subItem.url,
+                    ));
 
                 return item.items ? (
                   <Collapsible key={item.title} className="w-full">
@@ -250,12 +227,7 @@ export default function AppSidebar() {
                             <item.icon className="mr-2 h-4 w-4" />
                             <span>{item.title}</span>
                           </div>
-                          {/* {item.badge && (
-                            <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-2 text-xs text-primary-foreground">
-                              {item.badge}
-                            </span>
-                          )} */}
-                          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                          <ChevronDown className="ml-2 h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                         </SidebarMenuButton>
                       </CollapsibleTrigger>
                       <CollapsibleContent>
@@ -289,20 +261,14 @@ export default function AppSidebar() {
                           <item.icon className="mr-2 h-4 w-4" />
                           <span>{item.title}</span>
                         </div>
-                        {item.badge && (
-                          <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-2 text-xs text-primary-foreground">
-                            {item.badge}
-                          </span>
-                        )}
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
-                )
+                );
               })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-
         <SidebarGroup>
           <SidebarGroupLabel className="flex items-center justify-between">
             <span>Recent Projects</span>
@@ -315,7 +281,10 @@ export default function AppSidebar() {
             <SidebarMenu>
               {data.projects.slice(0, 3).map((project) => (
                 <SidebarMenuItem key={project.title}>
-                  <SidebarMenuButton asChild isActive={location.pathname + location.search === project.url}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={location.pathname + location.search === project.url}
+                  >
                     <Link to={project.url} className="flex flex-col items-start gap-1">
                       <div className="flex w-full justify-between">
                         <span className="font-medium">{project.title}</span>
@@ -351,7 +320,10 @@ export default function AppSidebar() {
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
                   <Avatar className="h-6 w-6 border border-sidebar-border">
-                    <AvatarImage src={data.user.avatar || "/placeholder.svg"} alt={data.user.name} />
+                    <AvatarImage
+                      src={data.user.avatar || '/placeholder.svg'}
+                      alt={data.user.name}
+                    />
                     <AvatarFallback>{data.user.name.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col gap-0.5 leading-none">
@@ -360,7 +332,10 @@ export default function AppSidebar() {
                   </div>
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-[--radix-dropdown-menu-trigger-width]">
+              <DropdownMenuContent
+                align="start"
+                className="w-[--radix-dropdown-menu-trigger-width]"
+              >
                 <DropdownMenuItem>
                   <User className="mr-2 h-4 w-4" />
                   <span>Profile</span>
@@ -381,5 +356,5 @@ export default function AppSidebar() {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

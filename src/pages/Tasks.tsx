@@ -262,7 +262,7 @@ export default function Tasks() {
   )
 }
 
-function TaskItem({ task }: { task: any }) {
+function TaskItem({ task }: { task: { id: number; title: string; description: string; priority: string; dueDate: string; assignee: { name: string; avatar: string }; project: string } }) {
   return (
     <div className="flex items-start gap-4 rounded-lg border p-4">
       <Checkbox id={`task-${task.id}`} className="mt-1" />
