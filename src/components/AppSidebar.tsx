@@ -250,11 +250,11 @@ export default function AppSidebar() {
                             <item.icon className="mr-2 h-4 w-4" />
                             <span>{item.title}</span>
                           </div>
-                          {item.badge && (
+                          {/* {item.badge && (
                             <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-2 text-xs text-primary-foreground">
                               {item.badge}
                             </span>
-                          )}
+                          )} */}
                           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                         </SidebarMenuButton>
                       </CollapsibleTrigger>
