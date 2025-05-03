@@ -253,25 +253,26 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
   };
 
   return (
-    <Button
-      data-sidebar="trigger"
-      data-slot="sidebar-trigger"
-      variant="ghost"
-      size="icon"
-      className={cn(
-        'size-7 transition-colors duration-300',
-        isOpen ? 'bg-muted text-primary' : 'bg-transparent text-muted-foreground',
-        className,
-      )}
-      onClick={(event) => {
-        onClick?.(event);
-        handleToggleSidebar();
-      }}
-      {...props}
-    >
-      {isOpen ? <ChevronsRight /> : <ChevronsLeft />}
-      <span className="sr-only">Toggle Sidebar</span>
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          data-sidebar="trigger"
+          data-slot="sidebar-trigger"
+          variant="ghost"
+          size="icon"
+          className={cn('size-7', className)}
+          onClick={(event) => {
+            onClick?.(event);
+            handleToggleSidebar();
+          }}
+          {...props}
+        >
+          {isOpen ? <ChevronsRight /> : <ChevronsLeft />}
+          <span className="sr-only">Toggle Sidebar</span>
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent side="right">{isOpen ? 'Show sidebar' : 'Hide sidebar'}</TooltipContent>
+    </Tooltip>
   );
 }
 
