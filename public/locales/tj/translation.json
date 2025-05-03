@@ -7,5 +7,10 @@
     "longFormRu": "Русӣ",
     "longFormTj": "Тоҷикӣ",
     "selectLang": "Забонро интихоб кунед"
+  },
+  "switcher": {
+    "dark": "Торик",
+    "light": "Равшан",
+    "system": "Системавӣ"
   }
 }

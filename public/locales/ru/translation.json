@@ -7,5 +7,10 @@
     "longFormRu": "Русский",
     "longFormTj": "Таджикский",
     "selectLang": "Выберите язык"
+  },
+  "switcher": {
+    "dark": "Темный",
+    "light": "Светлый",
+    "system": "Системный"
   }
 }
