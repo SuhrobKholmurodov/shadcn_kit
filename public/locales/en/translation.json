@@ -1,0 +1,11 @@
+{
+  "selectLang": {
+    "shortFormEn": "En",
+    "shortFormRu": "Ru",
+    "shortFormTj": "Tj",
+    "longFormEn": "English",
+    "longFormRu": "Russian",
+    "longFormTj": "Tajik",
+    "selectLang": "Select Language"
+  }
+}

@@ -1,21 +1,23 @@
-import { useState, useEffect } from 'react'
+import i18n from '@/lib/i18n' 
 import { useTranslation } from 'react-i18next'
-export type Language = 'en' | 'ru' | 'tj'
+import { useEffect, useState } from 'react'
+
+export type Language = 'EN' | 'RU' | 'TJ'
 
 export const useLocalization = () => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const [lng, setLng] = useState<Language>(i18n.language as Language)
 
   useEffect(() => {
-    const handleLanguageChange = (language: Language) => {
-      setLng(language)
+    const handleLanguageChange = (language: string) => {
+      setLng(language as Language)
     }
 
     i18n.on('languageChanged', handleLanguageChange)
     return () => {
       i18n.off('languageChanged', handleLanguageChange)
     }
-  }, [i18n])
+  }, [])
 
   const changeLanguage = (language: Language) => {
     i18n.changeLanguage(language)
