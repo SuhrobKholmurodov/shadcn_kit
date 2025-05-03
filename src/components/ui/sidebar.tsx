@@ -260,7 +260,7 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
           data-slot="sidebar-trigger"
           variant="ghost"
           size="icon"
-          className={cn('size-7', className)}
+          className={`${cn('size-7', className)} hover:cursor-pointer`}
           onClick={(event) => {
             onClick?.(event);
             handleToggleSidebar();
@@ -271,7 +271,7 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
           <span className="sr-only">Toggle Sidebar</span>
         </Button>
       </TooltipTrigger>
-      <TooltipContent side="right">{isOpen ? 'Show sidebar' : 'Hide sidebar'}</TooltipContent>
+      <TooltipContent side="left">{isOpen ? 'Show sidebar' : 'Hide sidebar'}</TooltipContent>
     </Tooltip>
   );
 }

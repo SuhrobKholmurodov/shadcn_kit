@@ -332,7 +332,7 @@ export default function AppSidebar() {
                   <Collapsible key={item.title} className="w-full">
                     <SidebarMenuItem>
                       <CollapsibleTrigger asChild>
-                        <SidebarMenuButton className="w-full justify-between group">
+                        <SidebarMenuButton className="w-full hover:cursor-pointer justify-between group">
                           <div className="flex items-center">
                             <item.icon className="mr-2 h-4 w-4" />
                             <span>{item.title}</span>
@@ -346,7 +346,7 @@ export default function AppSidebar() {
                             <SidebarMenuSubItem
                               className={
                                 location.pathname + location.search === subItem.url
-                                  ? 'border-r-2 rounded-r-[5px] bg-gray-100'
+                                  ? 'active-class'
                                   : ''
                               }
                               key={subItem.title}
