@@ -1,27 +1,39 @@
-import i18n from '@/lib/i18n' 
-import { useTranslation } from 'react-i18next'
-import { useEffect, useState } from 'react'
+import i18n from '@/lib/i18n';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 
-export type Language = 'EN' | 'RU' | 'TJ'
+export type Language = 'EN' | 'RU' | 'TJ';
+
 
 export const useLocalization = () => {
-  const { t } = useTranslation()
-  const [lng, setLng] = useState<Language>(i18n.language as Language)
+  const { t } = useTranslation();
+  const [lng, setLng] = useState<Language>(() => {
+    const saved = localStorage.getItem("app-language")?.toUpperCase() as Language;
+    return saved || (i18n.language.toUpperCase() as Language);
+  });
 
   useEffect(() => {
     const handleLanguageChange = (language: string) => {
-      setLng(language as Language)
+      const lang = language.toUpperCase() as Language;
+      setLng(lang);
+      localStorage.setItem("app-language", lang); 
+    };
+
+    i18n.on('languageChanged', handleLanguageChange);
+
+    const savedLang = localStorage.getItem("app-language");
+    if (savedLang) {
+      i18n.changeLanguage(savedLang.toLowerCase());
     }
 
-    i18n.on('languageChanged', handleLanguageChange)
     return () => {
-      i18n.off('languageChanged', handleLanguageChange)
-    }
-  }, [])
+      i18n.off('languageChanged', handleLanguageChange);
+    };
+  }, []);
 
   const changeLanguage = (language: Language) => {
-    i18n.changeLanguage(language)
-  }
+    i18n.changeLanguage(language.toLowerCase());
+  };
 
-  return { t, lng, changeLanguage }
-}
+  return { t, lng, changeLanguage };
+};
