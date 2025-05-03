@@ -256,6 +256,42 @@ export default function AppSidebar() {
   // const { state } = useSidebar()
   const [selectedTeam, setSelectedTeam] = React.useState(data.teams[0]);
 
+  React.useEffect(() => {
+    const style = document.createElement("style");
+    style.innerHTML = `
+      .sidebar-content::-webkit-scrollbar {
+        width: 6px;
+      }
+  
+      .sidebar-content::-webkit-scrollbar-thumb {
+        background-color: var(--scrollbar-color);
+        border-radius: 4px;
+      }
+  
+      .sidebar-content::-webkit-scrollbar-track {
+        background: transparent;
+      }
+  
+      .sidebar-content {
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-color) transparent;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+  
+  React.useEffect(() => {
+    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.style.setProperty(
+      "--scrollbar-color",
+      isDark ? "#4B5563" : "#D1D5DB" // gray-600 or gray-300
+    );
+  }, []);
+  
+
   return (
     <Sidebar>
       <SidebarHeader>
@@ -316,7 +352,7 @@ export default function AppSidebar() {
           </div>
         </div>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent  className="sidebar-content">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
