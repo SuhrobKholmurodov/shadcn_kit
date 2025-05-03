@@ -4,12 +4,11 @@ import { useState } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 type Language = 'en' | 'ru' | 'tj';
 
@@ -31,32 +30,37 @@ export const LanguageSelector = () => {
   return (
     <>
       <div className="sm:block hover:cursor-pointer hidden">
-        <Select value={lng} onValueChange={(val) => handleLanguageChange(val as Language)}>
-          <SelectTrigger className="w-[120px]">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="hover:cursor-pointer">
+              {lng.toUpperCase()}
+              <span className="sr-only">Toggle language</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
             {languageOptions.map(({ code, short }) => (
-              <SelectItem key={code} value={code}>
+              <DropdownMenuItem
+                key={code}
+                onClick={() => handleLanguageChange(code)}
+                className="hover:cursor-pointer"
+              >
                 {short}
-              </SelectItem>
+              </DropdownMenuItem>
             ))}
-          </SelectContent>
-        </Select>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
       <div className="block sm:hidden">
         <Sheet open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
           <SheetTrigger asChild>
-            <Button variant="outline">
-              {lng.toUpperCase()}
-            </Button>
+            <Button variant="outline">{lng.toUpperCase()}</Button>
           </SheetTrigger>
           <SheetContent side="bottom" className="sm:max-w-full sm:rounded-t-2xl px-6 pt-4 pb-6">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold text-center w-full">Select a language</h2>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {languageOptions.map(({ code, long, flag }) => (
                 <Button
                   key={code}
