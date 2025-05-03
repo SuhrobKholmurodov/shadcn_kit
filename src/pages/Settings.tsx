@@ -1,11 +1,29 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Switch } from "@/components/ui/switch"
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Switch } from '@/components/ui/switch';
+import { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+// import { MarkdownRenderer } from '@/components/MarkdownRenderer ';
+const markdownPath = '/docs/help.md';
 
 export default function Settings() {
+  const [content, setContent] = useState('Загрузка...');
+
+  useEffect(() => {
+    fetch(markdownPath)
+      .then((res) => res.text())
+      .then((text) => setContent(text));
+  }, []);
   return (
     <div className="space-y-6">
       <h2 className="text-3xl font-bold tracking-tight">Settings</h2>
@@ -21,7 +39,9 @@ export default function Settings() {
           <Card>
             <CardHeader>
               <CardTitle>Profile Information</CardTitle>
-              <CardDescription>Update your account details and profile information.</CardDescription>
+              <CardDescription>
+                Update your account details and profile information.
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
@@ -51,7 +71,9 @@ export default function Settings() {
           <Card>
             <CardHeader>
               <CardTitle>Password</CardTitle>
-              <CardDescription>Change your password or enable two-factor authentication.</CardDescription>
+              <CardDescription>
+                Change your password or enable two-factor authentication.
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
@@ -85,28 +107,36 @@ export default function Settings() {
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <Label>Email Notifications</Label>
-                  <p className="text-sm text-muted-foreground">Receive email notifications for important updates.</p>
+                  <p className="text-sm text-muted-foreground">
+                    Receive email notifications for important updates.
+                  </p>
                 </div>
                 <Switch defaultChecked />
               </div>
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <Label>Push Notifications</Label>
-                  <p className="text-sm text-muted-foreground">Receive push notifications on your devices.</p>
+                  <p className="text-sm text-muted-foreground">
+                    Receive push notifications on your devices.
+                  </p>
                 </div>
                 <Switch defaultChecked />
               </div>
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <Label>Task Reminders</Label>
-                  <p className="text-sm text-muted-foreground">Get reminders for upcoming and overdue tasks.</p>
+                  <p className="text-sm text-muted-foreground">
+                    Get reminders for upcoming and overdue tasks.
+                  </p>
                 </div>
                 <Switch defaultChecked />
               </div>
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <Label>Marketing Emails</Label>
-                  <p className="text-sm text-muted-foreground">Receive marketing and promotional emails.</p>
+                  <p className="text-sm text-muted-foreground">
+                    Receive marketing and promotional emails.
+                  </p>
                 </div>
                 <Switch />
               </div>
@@ -165,7 +195,11 @@ export default function Settings() {
             </CardFooter>
           </Card>
         </TabsContent>
+        {/* <MarkdownRenderer content={content} /> */}
+        <div className="">
+          <ReactMarkdown>{content}</ReactMarkdown>
+        </div>
       </Tabs>
     </div>
-  )
+  );
 }

@@ -6,14 +6,19 @@ import {
   Calendar,
   ChevronsUpDown,
   Settings,
-  FolderKanban,
-  CheckSquare,
   PlusCircle,
   Search,
   User,
   LogOut,
   ChevronDown,
   Check,
+  BookOpenText,
+  GalleryHorizontalEnd,
+  Parentheses,
+  Braces,
+  FileJson,
+  GitCompare,
+  Code,
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -57,8 +62,8 @@ const data = {
   ],
   navMain: [
     {
-      title: 'Projects',
-      icon: FolderKanban,
+      title: 'JS Tutorial',
+      icon: BookOpenText,
       url: '/projects',
       items: [
         {
@@ -76,8 +81,113 @@ const data = {
       ],
     },
     {
-      title: 'Tasks',
-      icon: CheckSquare,
+      title: 'JS Versions',
+      icon: GalleryHorizontalEnd,
+      url: '/tasks',
+      items: [
+        {
+          title: 'To Do',
+          url: '/tasks?filter=todo',
+          badge: '12',
+        },
+        {
+          title: 'In Progress',
+          url: '/tasks?filter=in-progress',
+          badge: '3',
+        },
+        {
+          title: 'Completed',
+          url: '/tasks?filter=completed',
+        },
+      ],
+    },
+    {
+      title: 'JS Objects',
+      icon: Braces,
+      url: '/tasks',
+      items: [
+        {
+          title: 'To Do',
+          url: '/tasks?filter=todo',
+          badge: '12',
+        },
+        {
+          title: 'In Progress',
+          url: '/tasks?filter=in-progress',
+          badge: '3',
+        },
+        {
+          title: 'Completed',
+          url: '/tasks?filter=completed',
+        },
+      ],
+    },
+    {
+      title: 'JS Functions',
+      icon: Parentheses,
+      url: '/tasks',
+      items: [
+        {
+          title: 'To Do',
+          url: '/tasks?filter=todo',
+          badge: '12',
+        },
+        {
+          title: 'In Progress',
+          url: '/tasks?filter=in-progress',
+          badge: '3',
+        },
+        {
+          title: 'Completed',
+          url: '/tasks?filter=completed',
+        },
+      ],
+    },
+    {
+      title: 'JS Classes',
+      icon: FileJson,
+      url: '/tasks',
+      items: [
+        {
+          title: 'To Do',
+          url: '/tasks?filter=todo',
+          badge: '12',
+        },
+        {
+          title: 'In Progress',
+          url: '/tasks?filter=in-progress',
+          badge: '3',
+        },
+        {
+          title: 'Completed',
+          url: '/tasks?filter=completed',
+        },
+      ],
+    },
+    {
+      title: 'JS Async',
+      icon: GitCompare,
+      url: '/tasks',
+      items: [
+        {
+          title: 'To Do',
+          url: '/tasks?filter=todo',
+          badge: '12',
+        },
+        {
+          title: 'In Progress',
+          url: '/tasks?filter=in-progress',
+          badge: '3',
+        },
+        {
+          title: 'Completed',
+          url: '/tasks?filter=completed',
+        },
+      ],
+    },
+    {
+      title: 'JS HTML DOM',
+      icon: Code,
       url: '/tasks',
       items: [
         {
@@ -233,7 +343,14 @@ export default function AppSidebar() {
                       <CollapsibleContent>
                         <SidebarMenuSub>
                           {item.items.map((subItem) => (
-                            <SidebarMenuSubItem key={subItem.title}>
+                            <SidebarMenuSubItem
+                              className={
+                                location.pathname + location.search === subItem.url
+                                  ? 'border-r-2 rounded-r-[5px] bg-gray-100'
+                                  : ''
+                              }
+                              key={subItem.title}
+                            >
                               <SidebarMenuSubButton
                                 asChild
                                 isActive={location.pathname + location.search === subItem.url}

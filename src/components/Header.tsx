@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
-import { Bell } from "lucide-react"
+import { Bell, Moon, Sun } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 
@@ -60,11 +60,11 @@ export default function Header() {
           <span className="absolute right-1.5 top-1.5 flex h-2 w-2 rounded-full bg-primary"></span>
           <span className="sr-only">Notifications</span>
         </Button>
-        {/* <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+        <Button variant="ghost" size="icon" className="relative">
           <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
-        </Button> */}
+        </Button>
       </div>
     </header>
   )
