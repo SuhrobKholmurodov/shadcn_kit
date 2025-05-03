@@ -253,7 +253,6 @@ const data = {
 
 export default function AppSidebar() {
   const location = useLocation();
-  // const { state } = useSidebar()
   const [selectedTeam, setSelectedTeam] = React.useState(data.teams[0]);
 
   React.useEffect(() => {
@@ -287,7 +286,7 @@ export default function AppSidebar() {
     const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     document.documentElement.style.setProperty(
       "--scrollbar-color",
-      isDark ? "#4B5563" : "#D1D5DB" // gray-600 or gray-300
+      isDark ? "#4B5563" : "#D1D5DB" 
     );
   }, []);
   
