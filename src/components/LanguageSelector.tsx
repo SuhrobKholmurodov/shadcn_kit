@@ -76,12 +76,12 @@ export const LanguageSelector = () => {
                 {t('selectLang.selectLang')}
               </h2>
             </div>
-            <div className="space-y-4 mt-4">
+            <div className="space-y-4">
               {languageOptions.map(({ code, long, flag }) => (
                 <Button
                   key={code}
                   onClick={() => handleLanguageChange(code as Language)}
-                  variant={lng === (code as Language) ? 'secondary' : 'outline'}
+                  variant={lng.toLowerCase() === code.toLowerCase() ? 'secondary' : 'outline'}
                   className="w-full h-10 justify-start gap-3"
                 >
                   <span className="text-xl">{flag}</span>

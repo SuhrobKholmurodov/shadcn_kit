@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { VariantProps, cva } from 'class-variance-authority';
-import { ChevronsLeft, ChevronsRight } from 'lucide-react';
+import { Menu } from 'lucide-react';
 
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
@@ -258,16 +258,16 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
         <Button
           data-sidebar="trigger"
           data-slot="sidebar-trigger"
-          variant="ghost"
+          variant="outline"
           size="icon"
-          className={`${cn('size-7', className)} hover:cursor-pointer`}
+          className={`${cn('size-9', className)} hover:cursor-pointer`}
           onClick={(event) => {
             onClick?.(event);
             handleToggleSidebar();
           }}
           {...props}
         >
-          {isOpen ? <ChevronsRight /> : <ChevronsLeft />}
+          <Menu />
           <span className="sr-only">Toggle Sidebar</span>
         </Button>
       </TooltipTrigger>

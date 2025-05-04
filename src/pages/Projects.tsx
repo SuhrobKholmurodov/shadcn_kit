@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 // Sample project data
-const projects = [
+const tutorial = [
   {
-    id: "web-app",
+    id: "content",
     title: "Web App Redesign",
     description: "Redesign the company website with a modern UI/UX approach",
     progress: 75,
@@ -19,7 +19,7 @@ const projects = [
     dueDate: "2023-12-15",
   },
   {
-    id: "mobile-app",
+    id: "introduction",
     title: "Mobile App Development",
     description: "Build a cross-platform mobile application for our customers",
     progress: 40,
@@ -30,7 +30,7 @@ const projects = [
     dueDate: "2024-02-28",
   },
   {
-    id: "marketing",
+    id: "variables",
     title: "Marketing Campaign",
     description: "Q3 marketing campaign for product launch",
     progress: 90,
@@ -42,7 +42,7 @@ const projects = [
     dueDate: "2023-09-30",
   },
   {
-    id: "product-launch",
+    id: "marketing",
     title: "Product Launch",
     description: "Launch new product line with press release and event",
     progress: 20,
@@ -51,17 +51,6 @@ const projects = [
       { name: "Isabella Thomas", avatar: "/placeholder.svg?height=32&width=32" },
     ],
     dueDate: "2024-04-15",
-  },
-  {
-    id: "customer-research",
-    title: "Customer Research",
-    description: "Conduct user interviews and surveys for product feedback",
-    progress: 60,
-    team: [
-      { name: "Benjamin Harris", avatar: "/placeholder.svg?height=32&width=32" },
-      { name: "Mia Jackson", avatar: "/placeholder.svg?height=32&width=32" },
-    ],
-    dueDate: "2023-11-10",
   },
 ]
 
@@ -72,7 +61,7 @@ export default function Projects() {
 
   // If a specific project is selected, show its details
   if (projectId) {
-    const project = projects.find((p) => p.id === projectId)
+    const project = tutorial.find((p) => p.id === projectId)
 
     if (!project) {
       return (
@@ -80,7 +69,7 @@ export default function Projects() {
           <h2 className="text-3xl font-bold tracking-tight">Project Not Found</h2>
           <p>The requested project could not be found.</p>
           <Button asChild>
-            <a href="/projects">Back to Projects</a>
+            <a href="/tutorial">Back to Projects</a>
           </Button>
         </div>
       )
@@ -203,7 +192,7 @@ export default function Projects() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
+        {tutorial.map((project) => (
           <Card key={project.id} className="overflow-hidden">
             <CardHeader className="pb-3">
               <CardTitle>{project.title}</CardTitle>
@@ -240,7 +229,7 @@ export default function Projects() {
             </CardContent>
             <CardFooter>
               <Button asChild variant="ghost" className="w-full">
-                <a href={`/projects?id=${project.id}`}>View Details</a>
+                <a href={`/tutorial?id=${project.id}`}>View Details</a>
               </Button>
             </CardFooter>
           </Card>

@@ -3,15 +3,9 @@
 import * as React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
-  Calendar,
   ChevronsUpDown,
-  Settings,
-  PlusCircle,
   Search,
-  User,
-  LogOut,
   ChevronDown,
-  Check,
   BookOpenText,
   GalleryHorizontalEnd,
   Parentheses,
@@ -20,25 +14,15 @@ import {
   GitCompare,
   Code,
 } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -50,171 +34,167 @@ import {
 } from '@/components/ui/sidebar';
 
 const data = {
-  user: {
-    name: 'John Doe',
-    email: 'john@example.com',
-    avatar: '/placeholder.svg?height=40&width=40',
-  },
-  teams: [
-    { id: '1', name: 'Acme Inc', role: 'Admin' },
-    { id: '2', name: 'Globex Corp', role: 'Member' },
-    { id: '3', name: 'Stark Industries', role: 'Owner' },
-  ],
   navMain: [
     {
       title: 'JS Tutorial',
       icon: BookOpenText,
-      url: '/projects',
+      url: '/tutorial',
       items: [
         {
-          title: 'Web App Redesign',
-          url: '/projects?id=web-app',
+          title: 'Content',
+          url: '/tutorial?id=content',
         },
         {
-          title: 'Mobile App Development',
-          url: '/projects?id=mobile-app',
+          title: 'JS introduction',
+          url: '/tutorial?id=introduction',
         },
         {
-          title: 'Marketing Campaign',
-          url: '/projects?id=marketing',
+          title: 'JS Variables',
+          url: '/tutorial?id=variables',
+        },
+        {
+          title: 'JS Data Types',
+          url: '/tutorial?id=marketing',
         },
       ],
     },
     {
       title: 'JS Versions',
       icon: GalleryHorizontalEnd,
-      url: '/tasks',
+      url: '/tutorial',
       items: [
         {
-          title: 'To Do',
-          url: '/tasks?filter=todo',
-          badge: '12',
+          title: 'Content',
+          url: '/tutorial?id=content',
         },
         {
-          title: 'In Progress',
-          url: '/tasks?filter=in-progress',
-          badge: '3',
+          title: 'JS introduction',
+          url: '/tutorial?id=introduction',
         },
         {
-          title: 'Completed',
-          url: '/tasks?filter=completed',
+          title: 'JS Variables',
+          url: '/tutorial?id=variables',
+        },
+        {
+          title: 'JS Data Types',
+          url: '/tutorial?id=marketing',
         },
       ],
     },
     {
       title: 'JS Objects',
-      icon: Braces,
-      url: '/tasks',
+      icon: Parentheses,
+      url: '/tutorial',
       items: [
         {
-          title: 'To Do',
-          url: '/tasks?filter=todo',
-          badge: '12',
+          title: 'Content',
+          url: '/tutorial?id=content',
         },
         {
-          title: 'In Progress',
-          url: '/tasks?filter=in-progress',
-          badge: '3',
+          title: 'JS introduction',
+          url: '/tutorial?id=introduction',
         },
         {
-          title: 'Completed',
-          url: '/tasks?filter=completed',
+          title: 'JS Variables',
+          url: '/tutorial?id=variables',
+        },
+        {
+          title: 'JS Data Types',
+          url: '/tutorial?id=marketing',
         },
       ],
     },
     {
       title: 'JS Functions',
-      icon: Parentheses,
-      url: '/tasks',
+      icon: Braces,
+      url: '/tutorial',
       items: [
         {
-          title: 'To Do',
-          url: '/tasks?filter=todo',
-          badge: '12',
+          title: 'Content',
+          url: '/tutorial?id=content',
         },
         {
-          title: 'In Progress',
-          url: '/tasks?filter=in-progress',
-          badge: '3',
+          title: 'JS introduction',
+          url: '/tutorial?id=introduction',
         },
         {
-          title: 'Completed',
-          url: '/tasks?filter=completed',
+          title: 'JS Variables',
+          url: '/tutorial?id=variables',
+        },
+        {
+          title: 'JS Data Types',
+          url: '/tutorial?id=marketing',
         },
       ],
     },
     {
       title: 'JS Classes',
       icon: FileJson,
-      url: '/tasks',
+      url: '/tutorial',
       items: [
         {
-          title: 'To Do',
-          url: '/tasks?filter=todo',
-          badge: '12',
+          title: 'Content',
+          url: '/tutorial?id=content',
         },
         {
-          title: 'In Progress',
-          url: '/tasks?filter=in-progress',
-          badge: '3',
+          title: 'JS introduction',
+          url: '/tutorial?id=introduction',
         },
         {
-          title: 'Completed',
-          url: '/tasks?filter=completed',
+          title: 'JS Variables',
+          url: '/tutorial?id=variables',
+        },
+        {
+          title: 'JS Data Types',
+          url: '/tutorial?id=marketing',
         },
       ],
     },
     {
       title: 'JS Async',
       icon: GitCompare,
-      url: '/tasks',
+      url: '/tutorial',
       items: [
         {
-          title: 'To Do',
-          url: '/tasks?filter=todo',
-          badge: '12',
+          title: 'Content',
+          url: '/tutorial?id=content',
         },
         {
-          title: 'In Progress',
-          url: '/tasks?filter=in-progress',
-          badge: '3',
+          title: 'JS introduction',
+          url: '/tutorial?id=introduction',
         },
         {
-          title: 'Completed',
-          url: '/tasks?filter=completed',
+          title: 'JS Variables',
+          url: '/tutorial?id=variables',
+        },
+        {
+          title: 'JS Data Types',
+          url: '/tutorial?id=marketing',
         },
       ],
     },
     {
       title: 'JS HTML DOM',
       icon: Code,
-      url: '/tasks',
+      url: '/tutorial',
       items: [
         {
-          title: 'To Do',
-          url: '/tasks?filter=todo',
-          badge: '12',
+          title: 'Content',
+          url: '/tutorial?id=content',
         },
         {
-          title: 'In Progress',
-          url: '/tasks?filter=in-progress',
-          badge: '3',
+          title: 'JS introduction',
+          url: '/tutorial?id=introduction',
         },
         {
-          title: 'Completed',
-          url: '/tasks?filter=completed',
+          title: 'JS Variables',
+          url: '/tutorial?id=variables',
+        },
+        {
+          title: 'JS Data Types',
+          url: '/tutorial?id=marketing',
         },
       ],
-    },
-    {
-      title: 'Calendar',
-      icon: Calendar,
-      url: '/calendar',
-    },
-    {
-      title: 'Settings',
-      icon: Settings,
-      url: '/settings',
     },
   ],
   projects: [
@@ -222,41 +202,39 @@ const data = {
       title: 'Web App Redesign',
       description: 'Redesign the company website',
       progress: 75,
-      url: '/projects?id=web-app',
+      url: '/tutorial?id=web-app',
     },
     {
       title: 'Mobile App Development',
       description: 'Build a new mobile app',
       progress: 40,
-      url: '/projects?id=mobile-app',
+      url: '/tutorial?id=mobile-app',
     },
     {
       title: 'Marketing Campaign',
       description: 'Q3 marketing campaign',
       progress: 90,
-      url: '/projects?id=marketing',
+      url: '/tutorial?id=marketing',
     },
     {
       title: 'Product Launch',
       description: 'Launch new product line',
       progress: 20,
-      url: '/projects?id=product-launch',
+      url: '/tutorial?id=product-launch',
     },
     {
       title: 'Customer Research',
       description: 'User interviews and surveys',
       progress: 60,
-      url: '/projects?id=customer-research',
+      url: '/tutorial?id=customer-research',
     },
   ],
 };
 
 export default function AppSidebar() {
   const location = useLocation();
-  const [selectedTeam, setSelectedTeam] = React.useState(data.teams[0]);
-
   React.useEffect(() => {
-    const style = document.createElement("style");
+    const style = document.createElement('style');
     style.innerHTML = `
       .sidebar-content::-webkit-scrollbar {
         width: 6px;
@@ -281,15 +259,11 @@ export default function AppSidebar() {
       document.head.removeChild(style);
     };
   }, []);
-  
+
   React.useEffect(() => {
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    document.documentElement.style.setProperty(
-      "--scrollbar-color",
-      isDark ? "#4B5563" : "#D1D5DB" 
-    );
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.style.setProperty('--scrollbar-color', isDark ? '#4B5563' : '#D1D5DB');
   }, []);
-  
 
   return (
     <Sidebar>
@@ -303,40 +277,14 @@ export default function AppSidebar() {
                   className="transition-all duration-200 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                 >
                   <Avatar className="h-8 w-8 border border-sidebar-border">
-                    <AvatarImage
-                      src={data.user.avatar || '/placeholder.svg'}
-                      alt={data.user.name}
-                    />
-                    <AvatarFallback>{data.user.name.charAt(0)}</AvatarFallback>
+                    <AvatarImage src={'/placeholder.svg'} alt={'Suhrob'} />
                   </Avatar>
-                  <div className="flex flex-col gap-0.5 leading-none">
-                    <span className="font-semibold">{selectedTeam.name}</span>
-                    <span className="text-xs text-muted-foreground">{selectedTeam.role}</span>
+                  <div className="ml-2 flex flex-col text-sm font-medium leading-none">
+                    <span className="text-primary">Suhrob</span>
                   </div>
                   <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="start"
-                className="w-[--radix-dropdown-menu-trigger-width]"
-              >
-                <DropdownMenuLabel>Teams</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                {data.teams.map((team) => (
-                  <DropdownMenuItem
-                    key={team.id}
-                    className="flex items-center justify-between"
-                    onSelect={() => setSelectedTeam(team)}
-                  >
-                    <span>{team.name}</span>
-                    {team.id === selectedTeam.id && (
-                      <span className="ml-auto flex h-4 w-4 items-center justify-center">
-                        <Check />
-                      </span>
-                    )}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -351,7 +299,7 @@ export default function AppSidebar() {
           </div>
         </div>
       </SidebarHeader>
-      <SidebarContent  className="sidebar-content">
+      <SidebarContent className="sidebar-content">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -392,11 +340,6 @@ export default function AppSidebar() {
                               >
                                 <Link to={subItem.url} className="flex w-full justify-between">
                                   <span>{subItem.title}</span>
-                                  {subItem.badge && (
-                                    <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-2 text-xs text-primary-foreground">
-                                      {subItem.badge}
-                                    </span>
-                                  )}
                                 </Link>
                               </SidebarMenuSubButton>
                             </SidebarMenuSubItem>
@@ -421,91 +364,7 @@ export default function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-        <SidebarGroup>
-          <SidebarGroupLabel className="flex items-center justify-between">
-            <span>Recent Projects</span>
-            <Button variant="ghost" size="icon" className="h-5 w-5 rounded-full">
-              <PlusCircle className="h-4 w-4" />
-              <span className="sr-only">Add project</span>
-            </Button>
-          </SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {data.projects.slice(0, 3).map((project) => (
-                <SidebarMenuItem key={project.title}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={location.pathname + location.search === project.url}
-                  >
-                    <Link to={project.url} className="flex flex-col items-start gap-1">
-                      <div className="flex w-full justify-between">
-                        <span className="font-medium">{project.title}</span>
-                        <span className="text-xs text-muted-foreground">{project.progress}%</span>
-                      </div>
-                      <div className="w-full">
-                        <div className="h-1.5 w-full rounded-full bg-muted">
-                          <div
-                            className="h-1.5 rounded-full bg-primary transition-all duration-300 ease-in-out"
-                            style={{ width: `${project.progress}%` }}
-                          />
-                        </div>
-                      </div>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link to="/projects" className="text-muted-foreground hover:text-foreground">
-                    View all projects
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  <Avatar className="h-6 w-6 border border-sidebar-border">
-                    <AvatarImage
-                      src={data.user.avatar || '/placeholder.svg'}
-                      alt={data.user.name}
-                    />
-                    <AvatarFallback>{data.user.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div className="flex flex-col gap-0.5 leading-none">
-                    <span className="font-medium">{data.user.name}</span>
-                    <span className="text-xs text-muted-foreground">{data.user.email}</span>
-                  </div>
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="start"
-                className="w-[--radix-dropdown-menu-trigger-width]"
-              >
-                <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );
